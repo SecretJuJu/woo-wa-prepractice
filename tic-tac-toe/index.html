@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="./assets/css/style.css">
+        <script src="./assets/js/main.js"></script>
+        <title>Tic Tac Toe</title>
+    </head>
+    <body>
+        <div class="game-wrapper">
+            <h1>
+                TIC TAC TOE
+            </h1>
+            <div class="score-box">
+                <strong class="score">
+                    <label id="player-x" for="player">O</label>-
+                    <span class="o-user" id="player">
+                        0
+                    </span>
+                    <strong>
+                        :
+                    </strong>
+                    <span class="x-user">
+                        0
+                    </span>
+                    -<label id="player-o" for="player">X</label>
+                </strong>
+            </div>
+            <div class="game-container">
+                <table class="game-table">
+                    <script>
+                        // make table
+                        const table = document.querySelector('.game-table');
+                        for (let i=0; i<3; i++) {
+                            line = document.createElement("tr")
+                            line.classList.add("game-table-line")
+                            table.appendChild(line)
+                            for (let j=0; j<3; j++) {
+                                let field = document.createElement("td")
+                                field.classList.add("game-table-field")
+                                field.id = `${j} ${i}`
+                                field.onclick = fieldOnClickHandler
+                                line.appendChild(field)
+                            }
+                        }
+                    </script>
+                </table>
+            </div>
+            <div class="game-control-units">
+                <button onclick="newGameHandler()">
+                    NEW GAME
+                </button>
+                <button onclick="resetHandler()">
+                    RESET GAME
+                </button>
+            </div>
+            <div class="annotations">
+                <span>
+                    VER 1.0 ( 2021 )
+                    <br>
+                    <div>Icons made by <a href="https://www.flaticon.com/authors/alfredo-hernandez" title="Alfredo Hernandez">Alfredo Hernandez</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+                </span>
+            </div>
+        </div>
+    </body>
+</html>

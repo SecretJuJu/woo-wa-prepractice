@@ -4,13 +4,13 @@ const Errors = {
     NotValidated: 2
 }
 
-const shapeEnum = {
+const shapeType = {
     null: 0,
     circle: 1,
     x: 2
 }
 
-const resultEnum = {
+const resultType = {
     draw: 1,
     confirmed: 2
 }
@@ -73,10 +73,10 @@ class GameTable {
             ) {
             return Errors.NotValidated
         }
-        if (this.table[y][x] !== shapeEnum.null) {
+        if (this.table[y][x] !== shapeType.null) {
             return Errors.AlreadyExist
         }
-        this.table[y][x] = (playerShape === "circle")? shapeEnum.circle: shapeEnum.x
+        this.table[y][x] = (playerShape === "circle")? shapeType.circle: shapeType.x
         this.turn += 1
         return 0
     }
@@ -84,23 +84,23 @@ class GameTable {
         const table = this.table
         const turn = this.turn
         if (
-            (table[0][0] == table[1][1] && table[0][0] == table[2][2] && table[0][0] !== shapeEnum.null) || 
-            (table[0][2] == table[1][1] && table[0][2] == table[2][0] && table[0][2] !== shapeEnum.null)
+            (table[0][0] == table[1][1] && table[0][0] == table[2][2] && table[0][0] !== shapeType.null) || 
+            (table[0][2] == table[1][1] && table[0][2] == table[2][0] && table[0][2] !== shapeType.null)
         ) {
-            return resultEnum.confirmed;
+            return resultType.confirmed;
         } //대각선으로 빙고가 생기는지 확인
      
         for (let line = 0; line <= 2; line++) {
             if (
-                (table[line][0] == table[line][1] && table[line][0] == table[line][2] && table[line][0] !== shapeEnum.null) || 
-                (table[0][line] == table[1][line] && table[0][line] == table[2][line] && table[0][line] !== shapeEnum.null)
+                (table[line][0] == table[line][1] && table[line][0] == table[line][2] && table[line][0] !== shapeType.null) || 
+                (table[0][line] == table[1][line] && table[0][line] == table[2][line] && table[0][line] !== shapeType.null)
             ) {
-                return resultEnum.confirmed;
+                return resultType.confirmed;
             } //가로, 세로줄로 빙고가 생기는지 확인, line은 각 가로, 세로줄의 줄 번호 
         }
      
         if (turn >= 10) {
-            return resultEnum.draw;
+            return resultType.draw;
         }
     }
     
@@ -124,10 +124,10 @@ const fieldOnClickHandler = (event) => {
     gameTable.pickField(x,y,player)
     event.currentTarget.classList.add(player)
     result = gameTable.checkResult(gameTable.table,gameTable.turn)
-    if (result === resultEnum.draw){
+    if (result === resultType.draw){
         alert("draw!")
         resetHandler()
-    } else if (result === resultEnum.confirmed) {
+    } else if (result === resultType.confirmed) {
         alert(`${player} was won!`)
         gameTable.score[player] += 1
         resetHandler()
@@ -155,12 +155,12 @@ const drawTable = (table) => {
     table.forEach((row,y) => {
         row.forEach((shape,x) => {
             const target = document.getElementById(`${x} ${y}`)
-            if (shape === shapeEnum.null) {
+            if (shape === shapeType.null) {
                 target.className = "game-table-field"
                 return
             }
             let shapeString
-            if (shape === shapeEnum.circle) {
+            if (shape === shapeType.circle) {
                 shapeString = "circle"
             } else {
                 shapeString = "x"

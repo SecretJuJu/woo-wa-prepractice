@@ -72,6 +72,9 @@ body {
     width: 33%;
     min-height: 130px;
     cursor: pointer;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center center;
 }
 
 .game-table> :nth-child(2) { /* first line */
@@ -92,16 +95,10 @@ body {
 
 .x {
     background-image: url(../img/x.svg);
-    background-repeat: no-repeat;
-    background-size: 100%; 
-    background-position: center center;
 }
 
 .circle {
     background-image: url(../img/circle.svg);
-    background-repeat: no-repeat;
-    background-size: 100%;
-    background-position: center center;
 }
 
 .game-control-units {
